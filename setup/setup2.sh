@@ -42,8 +42,11 @@ ansible-galaxy install -r requirements.yml -f
 
 pip install boto botocore boto3 --user 
 
-ansible-playbook install-optimized.yml
+#ansible-playbook install-optimized.yml
 
+
+ansible-playbook install-optimized.yml --tags cache,response-file
+sed -i '/^#.*apigee_archive_file_name/s/^#//' ~/.apigee/apigee-mirror-archive-properties.yml
 
 # vi ~/.apigee/custom-properties.yml
 
