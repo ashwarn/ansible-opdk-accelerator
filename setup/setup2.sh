@@ -29,7 +29,6 @@ sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-co
 
 sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
 
-cd ~/ansible-opdk-accelerator/installations/multi-node
 
 ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa_ansible -q -N "" 0>&-
 
@@ -38,8 +37,11 @@ chmod 600 ~/.ssh/authorized_keys
 
 sed -i 's/id_rsa/id_rsa_ansible/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 
-cd ansible-opdk-accelerator/installations/multi-node
+cd ~/ansible-opdk-accelerator/installations/multi-node
 ansible-galaxy install -r requirements.yml -f
+
+pip install boto botocore boto3 --user 
+
 ansible-playbook install-optimized.yml
 
 
