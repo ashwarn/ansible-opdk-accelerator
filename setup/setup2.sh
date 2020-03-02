@@ -44,6 +44,12 @@ pip install boto botocore boto3 --user
 
 #ansible-playbook install-optimized.yml
 
+mkdir -p /opt/apigee/data/apigee-mirror/
+# copy license and binary 
+# cp license.txt ~/.apigee-secure/license.txt
+# cp apigee-4.19.06.tar.gz /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz
+sudo chown -R apigee:apigee /opt/apigee/data/apigee-mirror/
+
 
 ansible-playbook install-optimized.yml --tags cache,response-file
 sed -i '/^#.*apigee_archive_file_name/s/^#//' ~/.apigee/apigee-mirror-archive-properties.yml
