@@ -5,7 +5,7 @@ pip install ansible --user
 
 cd ~
 
-git clone https://github.com/apigee/ansible-opdk-accelerator.git
+git clone https://github.com/ashwarn/ansible-opdk-accelerator.git
 
 cd ansible-opdk-accelerator/setup
 
