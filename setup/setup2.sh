@@ -28,7 +28,7 @@ chmod 600 ~/.ssh/authorized_keys
 
 sed -i 's/id_rsa/id_rsa_ansible/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i '/^#.*apigee_archive_file_name/s/^#//' ~/.apigee/apigee-mirror-archive-properties.yml
-mkdir ~/apigee-4.19.06
+mkdir apigee-4.19.06
 cd ~/ansible-opdk-accelerator/installations/multi-node
 ansible-galaxy install -r requirements.yml -f
  
