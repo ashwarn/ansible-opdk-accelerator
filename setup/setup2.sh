@@ -9,30 +9,20 @@ cd ~
 git clone https://github.com/ashwarn/ansible-opdk-accelerator.git
 
 cd ansible-opdk-accelerator/setup
-
 ansible-galaxy install -r requirements.yml -f
-
 ansible-playbook setup.yml
 
-
 cp ~/.ansible/multi-planet-configurations/templates/apigee-opdk-configuration-template.cfg ~/.ansible/multi-planet-configurations/prod.cfg
-
 cp -r ~/.ansible/inventory/templates/edge-2/ ~/.ansible/inventory/prod/
-
 export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 
-USER=`whoami`
-
-
-
-sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USER/g"  ~/.ansible/multi-planet-configurations/prod.cfg
+sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g"  ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 
 sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
 
 
 ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa_ansible -q -N "" 0>&-
-
 cat ~/.ssh/id_rsa_ansible.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
