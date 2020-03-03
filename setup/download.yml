@@ -1,0 +1,11 @@
+---
+- name: download license and bianries
+  hosts: rmp
+  tags: ["license"]
+  tasks:
+    - name: Download license file
+      aws_s3:
+        bucket: mybucket
+        object: /atopovinstallation/license.txt
+        dest: ~/.apigee-secure/license.txt
+        mode: get
