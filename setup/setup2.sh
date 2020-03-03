@@ -1,7 +1,8 @@
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
-pip install ansible --user
+pip install ansible boto botocore boto3 --user
 
+sudo yum install git -y 
 
 cd ~
 
@@ -40,7 +41,7 @@ sed -i 's/id_rsa/id_rsa_ansible/g'  ~/.ansible/multi-planet-configurations/prod.
 cd ~/ansible-opdk-accelerator/installations/multi-node
 ansible-galaxy install -r requirements.yml -f
 
-pip install boto botocore boto3 --user 
+ 
 
 #ansible-playbook install-optimized.yml
 
