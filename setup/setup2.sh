@@ -32,7 +32,7 @@ mkdir apigee-4.19.06
 cd ~/ansible-opdk-accelerator/installations/multi-node
 ansible-galaxy install -r requirements.yml -f
  
-ansible-playbook install-optimized.yml --tags cache,response-file,copy,ds,ms,rmp
+ansible-playbook install-demo.yml --tags cache,response-file,copy,bootstrap,ds,ms,rmp
 #mkdir -p /opt/apigee/data/apigee-mirror/
 # copy license and binary 
 # cp license.txt ~/.apigee-secure/license.txt
