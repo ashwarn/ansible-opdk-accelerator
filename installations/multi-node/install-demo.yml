@@ -100,11 +100,22 @@
       aws_s3:
         bucket: atopovinstallation
         object: apigee-4.19.06.tar.gz
-        dest: /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz"
+        dest: /tmp/apigee-4.19.06.tar.gz
         mode: get
+        
+    - name: Copy file from tmp
+      copy:
+        src: /tmp/apigee-4.19.06.tar.gz
+        dest: /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz
+        remote_src: yes
       become: yes
       become_user: '{{ opdk_user_name }}'
-        
+      
+    - name: Delete File from tmp
+      file:
+        path: /tmp/apigee-4.19.06.tar.gz
+        state: absent
+      
 - name: Complete OS Pre-requisites
   hosts: edge
   strategy: free
