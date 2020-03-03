@@ -96,14 +96,25 @@
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
 
+    - name: Assert Permissions are Correct
+      become: yes
+      file:
+        path: /opt/apigee/data
+        recurse: yes
+        mode: "777"
+        owner: '{{ opdk_user_name }}'
+        group: '{{ opdk_group_name }}'
+        
     - name: Download apigee binary file
       aws_s3:
         bucket: atopovinstallation
         object: apigee-4.19.06.tar.gz
         dest: /tmp/apigee-4.19.06.tar.gz
         mode: get
+      args:
+        creates: /tmp/apigee-4.19.06.tar.gz
         
-    - name: Copy file from tmp
+    - name: Copy file from tmp to repos folder
       copy:
         src: /tmp/apigee-4.19.06.tar.gz
         dest: /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz
