@@ -119,6 +119,15 @@
       become: yes
       become_user: '{{ opdk_user_name }}'
       
+    - name: Create binary folder to trigger offline installation
+      file: 
+        path: ~/apigee-4.19.06
+        state: directory 
+        
+    - name: Disable SELinux
+      selinux:
+        state: disabled        
+    
     - name: Delete File from tmp
       file:
         path: /tmp/apigee-4.19.06.tar.gz
