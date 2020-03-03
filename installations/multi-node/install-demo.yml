@@ -127,7 +127,8 @@
         
     - name: Disable SELinux
       selinux:
-        state: disabled        
+        state: disabled     
+      become: yes
     
     - name: Delete File from tmp
       file:
