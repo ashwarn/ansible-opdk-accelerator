@@ -92,7 +92,6 @@
       file:
         path: /opt/apigee/data/apigee-mirror/
         state: directory
-        mode: 777
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
 
@@ -101,7 +100,7 @@
       file:
         path: /opt/apigee/data
         recurse: yes
-        mode: "777"
+        mode: "755"
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
         
@@ -111,9 +110,7 @@
         object: apigee-4.19.06.tar.gz
         dest: /tmp/apigee-4.19.06.tar.gz
         mode: get
-      args:
-        creates: /tmp/apigee-4.19.06.tar.gz
-        
+
     - name: Copy file from tmp to repos folder
       copy:
         src: /tmp/apigee-4.19.06.tar.gz
