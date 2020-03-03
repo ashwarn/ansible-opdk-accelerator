@@ -122,7 +122,7 @@
       
     - name: Create binary folder to trigger offline installation
       file: 
-        path: ~/apigee-4.19.06
+        path: apigee-4.19.06
         state: directory 
         
     - name: Disable SELinux
