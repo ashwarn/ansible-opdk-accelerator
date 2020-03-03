@@ -90,7 +90,7 @@
     - name: Create Repos Folder on Target Node
       become: yes
       file:
-        path: "{{ apigeerepobasepath }}"
+        path: /opt/apigee/data/apigee-mirror/
         state: directory
         mode: 777
         owner: '{{ opdk_user_name }}'
@@ -100,7 +100,7 @@
       aws_s3:
         bucket: atopovinstallation
         object: apigee-4.19.06.tar.gz
-        dest: "{{ apigeerepobasepath }}/apigee-4.19.06.tar.gz"
+        dest: /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz"
         mode: get
         
 - name: Complete OS Pre-requisites
