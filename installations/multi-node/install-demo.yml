@@ -38,23 +38,6 @@
     - apigee-opdk-settings-postgres
     - apigee-opdk-setup-silent-installation-config
 
-- name: Download license file from s3 bucket
-  hosts: edge
-  gather_facts: no
-  strategy: free
-  tags: ['copy','license']
-  vars:
-    property_folders:
-    - "~/.apigee"
-    - "~/.apigee-secure"
-  tasks:
-    - name: Download license file
-      aws_s3:
-        bucket: atopovinstallation
-        object: license.txt
-        dest: ~/.apigee-secure/license.txt
-        mode: get
-
 - name: Distribute Configuration File to Planet
   hosts: edge
   gather_facts: no
@@ -97,6 +80,29 @@
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
 
+    - name: Download license file
+      aws_s3:
+        bucket: atopovinstallation
+        object: license.txt
+        dest: ~/.apigee-secure/license.txt
+        mode: get
+ 
+    - name: Create Repos Folder on Target Node
+      become: yes
+      file:
+        path: "{{ apigeerepobasepath }}"
+        state: directory
+        mode: 777
+        owner: '{{ opdk_user_name }}'
+        group: '{{ opdk_group_name }}'
+
+    - name: Download apigee binary file
+      aws_s3:
+        bucket: atopovinstallation
+        object: apigee-4.19.06.tar.gz
+        dest: "{{ apigeerepobasepath }}/apigee-4.19.06.tar.gz"
+        mode: get
+        
 - name: Complete OS Pre-requisites
   hosts: edge
   strategy: free
