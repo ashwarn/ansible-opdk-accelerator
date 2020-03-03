@@ -22,7 +22,7 @@ sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-co
 sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
 
 
-ssh-keygen -b 2048 -t rsa -f /tmp/id_rsa_ansible -q -N "" 0>&-
+ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa_ansible -q -N "" 0>&-
 cat ~/.ssh/id_rsa_ansible.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
