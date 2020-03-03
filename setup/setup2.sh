@@ -13,7 +13,7 @@ ansible-galaxy install -r requirements.yml -f
 ansible-playbook setup.yml
 
 cp ~/.ansible/multi-planet-configurations/templates/apigee-opdk-configuration-template.cfg ~/.ansible/multi-planet-configurations/prod.cfg
-cp -r ~/.ansible/inventory/templates/edge-2/ ~/.ansible/inventory/prod/
+cp -r ~/.ansible/inventory/templates/edge-aio/ ~/.ansible/inventory/prod/
 export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 
 sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g"  ~/.ansible/multi-planet-configurations/prod.cfg
@@ -31,19 +31,16 @@ sed -i '/^#.*apigee_archive_file_name/s/^#//' ~/.apigee/apigee-mirror-archive-pr
 mkdir ~/apigee-4.19.06
 cd ~/ansible-opdk-accelerator/installations/multi-node
 ansible-galaxy install -r requirements.yml -f
-
  
-
-#ansible-playbook install-optimized.yml
-
-mkdir -p /opt/apigee/data/apigee-mirror/
+ansible-playbook install-optimized.yml --tags cache,response-file,copy,ds,ms,rmp
+#mkdir -p /opt/apigee/data/apigee-mirror/
 # copy license and binary 
 # cp license.txt ~/.apigee-secure/license.txt
 # cp apigee-4.19.06.tar.gz /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz
-sudo chown -R apigee:apigee /opt/apigee/data/apigee-mirror/
+#sudo chown -R apigee:apigee /opt/apigee/data/apigee-mirror/
 
 
-ansible-playbook install-optimized.yml --tags cache,response-file
+#ansible-playbook install-optimized.yml --tags cache,response-file
 
 # vi ~/.apigee/custom-properties.yml
 
