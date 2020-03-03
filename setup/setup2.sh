@@ -13,7 +13,7 @@ ansible-galaxy install -r requirements.yml -f
 ansible-playbook setup.yml
 
 cp ~/.ansible/multi-planet-configurations/templates/apigee-opdk-configuration-template.cfg ~/.ansible/multi-planet-configurations/prod.cfg
-cp -r ~/.ansible/inventory/templates/edge-aio/inventory-aio ~/.ansible/inventory/prod/
+cp -r ~/.ansible/inventory/templates/edge-aio ~/.ansible/inventory/prod/
 export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 
 sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g"  ~/.ansible/multi-planet-configurations/prod.cfg
