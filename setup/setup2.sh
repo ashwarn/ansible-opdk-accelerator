@@ -19,7 +19,7 @@ export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g"  ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 
- sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/inventory-aio
+sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/inventory-aio
 
 
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa_ansible -q -N "" 0>&-
@@ -28,8 +28,9 @@ chmod 600 ~/.ssh/authorized_keys
 
 sed -i 's/id_rsa/id_rsa_ansible/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i '/^#.*apigee_archive_file_name/s/^#//' ~/.apigee/apigee-mirror-archive-properties.yml
-mkdir apigee-4.19.06
 cd ~/ansible-opdk-accelerator/installations/multi-node
+mkdir apigee-4.19.06
+
 ansible-galaxy install -r requirements.yml -f
  
 ansible-playbook install-demo.yml --tags cache,response-file
