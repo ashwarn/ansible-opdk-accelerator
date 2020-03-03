@@ -47,7 +47,7 @@
     property_folders:
     - "~/.apigee"
     - "~/.apigee-secure"
-   tasks:
+  tasks:
     - name: Download license file
       aws_s3:
         bucket: atopovinstallation
