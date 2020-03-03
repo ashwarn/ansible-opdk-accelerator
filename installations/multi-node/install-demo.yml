@@ -102,6 +102,8 @@
         object: apigee-4.19.06.tar.gz
         dest: /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz"
         mode: get
+      become: yes
+      become_user: '{{ opdk_user_name }}'
         
 - name: Complete OS Pre-requisites
   hosts: edge
