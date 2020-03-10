@@ -47,11 +47,20 @@
     property_folders:
     - "~/.apigee"
     - "~/.apigee-secure"
+    
+  pre_tasks:
+    - name: Download license file
+      copy:
+        src: /media/sf_apigee/license.txt
+        dest: ~/.apigee-secure/license.txt
+        remote_src: yes
+        
   roles:
     - { role: apigee-opdk-modules, tags: ['license'] }
     - apigee-opdk-setup-apigee-user
     - { role: apigee-opdk-setup-license, tags: ['license'] }
     - apigee-opdk-setup-apigee-user-ownership
+    
   tasks:
     - name: Create Target Folder on Target Node
       become: yes
@@ -79,12 +88,6 @@
         mode: "777"
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
-
-    - name: Download license file
-      copy:
-        src: /media/sf_apigee/license.txt
-        dest: ~/.apigee-secure/license.txt
-        remote_src: yes
 
     - name: Create Repos Folder on Target Node
       become: yes
