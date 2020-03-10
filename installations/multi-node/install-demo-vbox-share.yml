@@ -80,19 +80,11 @@
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
 
-    # - name: Download license file
-    #   aws_s3:
-    #     bucket: atopovinstallation
-    #     object: license.txt
-    #     dest: ~/.apigee-secure/license.txt
-    #     mode: get
-
     - name: Download license file
       copy:
         src: /media/sf_apigee/license.txt
         dest: ~/.apigee-secure/license.txt
         remote_src: yes
-      become: yes
 
     - name: Create Repos Folder on Target Node
       become: yes
@@ -111,14 +103,6 @@
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
 
-    # - name: Download apigee binary file
-    #   aws_s3:
-    #     bucket: atopovinstallation
-    #     object: apigee-4.19.06.tar.gz
-    #     dest: /tmp/apigee-4.19.06.tar.gz
-    #     mode: get
-    #     overwrite: different
-    #
     - name: Copy file from tmp to repos folder
       copy:
         src: /media/sf_apigee/apigee-4.19.06.tar.gz
