@@ -36,6 +36,6 @@ mkdir ~/apigee-4.19.06
 ansible-galaxy install -r requirements.yml -f
  
 ansible-playbook install-demo-vbox-share.yml --tags cache,response-file
-ansible-playbook install-demo-vbox-share.yml --tags copy --limit rmp
-ansible-playbook install-demo-vbox-share.yml --tags bootstrap --limit rmp
-ansible-playbook install-demo-vbox-share.yml --tags rmp --limit rmp
+ansible-playbook install-demo-vbox-share.yml --tags copy --limit apigee_001
+ansible-playbook install-demo-vbox-share.yml --tags bootstrap --limit apigee_001
+ansible-playbook install-demo-vbox-share.yml --tags rmp --limit apigee_001
