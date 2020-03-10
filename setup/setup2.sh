@@ -19,7 +19,9 @@ export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g"  ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 
-sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
+# Replace osboxes with desired host for apigee_000
+sed -i "/^apigee_000/s/10.x.x.x/osboxes/g" ~/.ansible/inventory/prod/edge-dc1
+sed -i "/^apigee_001/s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
 
 
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa_ansible -q -N "" 0>&-
