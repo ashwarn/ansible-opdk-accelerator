@@ -13,13 +13,13 @@ ansible-galaxy install -r requirements.yml -f
 ansible-playbook setup.yml
 
 cp ~/.ansible/multi-planet-configurations/templates/apigee-opdk-configuration-template.cfg ~/.ansible/multi-planet-configurations/prod.cfg
-cp -r ~/.ansible/inventory/templates/edge-aio ~/.ansible/inventory/prod/
+cp -r ~/.ansible/inventory/templates/edge-2 ~/.ansible/inventory/prod/
 export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 
 sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g"  ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 
-sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/inventory-aio
+sed -i "s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
 
 
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa_ansible -q -N "" 0>&-
@@ -34,9 +34,11 @@ mkdir apigee-4.19.06
 ansible-galaxy install -r requirements.yml -f
  
 ansible-playbook install-demo.yml --tags cache,response-file
-ansible-playbook install-demo.yml --tags copy
-ansible-playbook install-demo.yml --tags bootstrap 
-ansible-playbook install-demo.yml --tags ds,ms,rmp 
+ansible-playbook install-demo.yml --tags copy --limit rmp
+ansible-playbook install-demo.yml --tags bootstrap --limit rmp
+# ansible-playbook install-demo.yml --tags ds,ms,rmp --limit rmp
+
+ansible-playbook install-demo.yml --tags rmp --limit rmp
 #mkdir -p /opt/apigee/data/apigee-mirror/
 # copy license and binary 
 # cp license.txt ~/.apigee-secure/license.txt
