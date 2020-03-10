@@ -20,7 +20,6 @@
 
 - name: Generate Configuration for Planet
   hosts: ms
-  gather_facts: no
   strategy: free
   tags: ['response-file']
   vars:
