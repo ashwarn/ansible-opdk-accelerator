@@ -49,10 +49,11 @@
     
   pre_tasks:
     - name: Download license file
-      copy:
-        src: /media/sf_apigee/license.txt
+      aws_s3:
+        bucket: atopovinstallation
+        object: license.txt
         dest: ~/.apigee-secure/license.txt
-        remote_src: yes
+        mode: get
         
   roles:
     - { role: apigee-opdk-modules, tags: ['license'] }
@@ -105,14 +106,22 @@
         owner: '{{ opdk_user_name }}'
         group: '{{ opdk_group_name }}'
 
+    - name: Download apigee binary file
+      aws_s3:
+        bucket: atopovinstallation
+        object: apigee-4.19.06.tar.gz
+        dest: /tmp/apigee-4.19.06.tar.gz
+        mode: get
+        overwrite: different
+
     - name: Copy file from tmp to repos folder
       copy:
-        src: /media/sf_apigee/apigee-4.19.06.tar.gz
+        src: /tmp/apigee-4.19.06.tar.gz
         dest: /opt/apigee/data/apigee-mirror/apigee-4.19.06.tar.gz
         remote_src: yes
       become: yes
       become_user: '{{ opdk_user_name }}'
-
+      
     - name: Create binary folder to trigger offline installation
       file:
         path: apigee-4.19.06
