@@ -2,7 +2,7 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 pip install ansible boto botocore boto3 --user
 
-sudo yum install git -y 
+sudo yum install git -y
 
 cd ~
 
@@ -21,7 +21,7 @@ sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g'  ~/.ansible/multi-planet-co
 
 # Replace osboxes with desired host for apigee_000
 sed -i "/^apigee_000/s/10.x.x.x/ip-172-16-3-154.ap-southeast-2.compute.internal/g" ~/.ansible/inventory/prod/edge-dc1
-sed -i "/^apigee_001/s/10.x.x.x/ip-172-16-3-31.ap-southeast-2.compute.internal/g" ~/.ansible/inventory/prod/edge-dc1
+sed -i "/^apigee_001/s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
 
 
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa_ansible -q -N "" 0>&-
@@ -34,7 +34,7 @@ cd ~/ansible-opdk-accelerator/installations/multi-node
 mkdir ~/apigee-4.19.06
 
 ansible-galaxy install -r requirements.yml -f
- 
+
 ansible-playbook install-demo-ec2.yml --tags cache,response-file
 ansible-playbook install-demo-ec2.yml --tags copy --limit apigee_001
 ansible-playbook install-demo-ec2.yml --tags bootstrap --limit apigee_001
