@@ -35,7 +35,7 @@ cd ~/ansible-opdk-accelerator/installations/multi-node
 
 # ansible-galaxy install -r requirements.yml -f
 
-ansible-playbook install-demo-ec2.yml --tags cache,response-file
+ansible-playbook install-demo-ec2.yml --tags cache,response-file --user ec2-user
 # ansible-playbook install-demo-ec2.yml --tags copy --limit apigee_001
 # ansible-playbook install-demo-ec2.yml --tags bootstrap --limit apigee_001
-ansible-playbook install-demo-ec2.yml --tags rmp --limit apigee_001
+ansible-playbook install-demo-ec2.yml --tags rmp --limit apigee_001 --user ec2-user
