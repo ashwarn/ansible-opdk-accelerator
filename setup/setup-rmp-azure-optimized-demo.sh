@@ -1,6 +1,3 @@
-su azureuser
-cd /home/azureuser
-
 export ANSIBLE_CONFIG=~/.ansible/multi-planet-configurations/prod.cfg
 cd ~/ansible-opdk-accelerator/installations/multi-node
 
