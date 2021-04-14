@@ -15,6 +15,10 @@
 #     This is the location of custom property files.
      apigee_custom_properties_folder: "~/.apigee"
 
+#    Added my repository     
+     repository_secure_endpoint_https: "https://github.com/ashwarn"
+     repository_secure_endpoint_ssh: "git@github.com:ashwarn"
+
   roles:
   - { role: apigee-opdk-setup-ansible-controller }
 
