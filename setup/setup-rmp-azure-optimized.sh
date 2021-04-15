@@ -28,7 +28,7 @@ chmod +x ~/scripts/hostname-replace.sh
 # Update hostname and other vars
 sed -i "s/UPDATE_WITH_SSH_USER_NAME/$USERNAME/g" ~/.ansible/multi-planet-configurations/prod.cfg
 sed -i 's/TARGET_ENVIRONMENT_NAME_CONVENTION/prod/g' ~/.ansible/multi-planet-configurations/prod.cfg
-sed -i "/^apigee_004/s/10.x.x.x/$HOSTNAME/g" ~/.ansible/inventory/prod/edge-dc1
+sed -i "/^apigee_004/s/10.x.x.x/`hostname -i`/g" ~/.ansible/inventory/prod/edge-dc1
 
 
 # Setup ssh login
