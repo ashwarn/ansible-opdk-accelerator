@@ -39,7 +39,7 @@ sed -i "/^apigee_004/s/10.x.x.x/`hostname -i`/g" ~/.ansible/inventory/prod/edge-
 # sed -i 's/id_rsa/id_rsa_ansible/g'  ~/.ansible/multi-planet-configurations/prod.cfg
 # sed -i '/^#.*apigee_archive_file_name/s/^#//' ~/.apigee/apigee-mirror-archive-properties.yml
 
-mkdir ~/apigee-4.50.50
+mkdir ~/apigee-4.50.00
 cd ~/ansible-opdk-accelerator/installations/multi-node
 ansible-galaxy install -r requirements.yml -f
 
